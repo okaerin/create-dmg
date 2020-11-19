@@ -66,7 +66,7 @@ Options:
       make a drop link to Applications, at location x,y
   --ql-drop-link <x> <y>
       make a drop link to user QuickLook install dir, at location x,y
-  --custom-drop-link <target_link> <link_name> <x> <y>
+  --custom-drop-link <link_name> <target_link> <x> <y>
       make a custom link to a custom location dir, at location x,y
   --eula <eula_file>
       attach a license file to the dmg (plain text or RTF)
@@ -148,8 +148,8 @@ while [[ "${1:0:1}" = "-" ]]; do
 			"
 			shift; shift; shift;;
 		--custom-drop-link)
-			CUSTOM_TARGET=$2
-			CUSTOM_LINK=$3
+			CUSTOM_LINK=$2
+			CUSTOM_TARGET=$3
 			CUSTOM_CLAUSE="set position of item \"${CUSTOM_LINK}\" to {$4, $5}
 			"
 			shift;shift;shift;shift;shift;;
@@ -337,7 +337,7 @@ if [[ -n "$QL_LINK" ]]; then
 fi
 
 if [[ -n "$CUSTOM_TARGET" ]];then
-	echo "Making link  ${CUSTOM_LINK} to custom location..."
+	echo "Making link ${CUSTOM_LINK} to custom location..."
 	echo $MOUNT_DIR
 	ln -s "${CUSTOM_TARGET}" "$MOUNT_DIR/$CUSTOM_LINK"
 fi
