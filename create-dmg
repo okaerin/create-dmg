@@ -369,7 +369,7 @@ else
 			| perl -pe "s/POSITION_CLAUSE/$POSITION_CLAUSE/g" \
 			| perl -pe "s/QL_CLAUSE/$QL_CLAUSE/g" \
 			| perl -pe "s/APPLICATION_CLAUSE/$APPLICATION_CLAUSE/g" \
-			| perl -pe "s/CUSTOM_CLAUSE/$CUSTOM_CLAUSE/g"
+			| perl -pe "s/CUSTOM_CLAUSE/$CUSTOM_CLAUSE/g" \
 			| perl -pe "s/HIDING_CLAUSE/$HIDING_CLAUSE/" \
 			> "$APPLESCRIPT_FILE"
 		sleep 2 # pause to workaround occasional "Can’t get disk" (-1728) issues  
