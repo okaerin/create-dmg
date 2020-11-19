@@ -150,7 +150,7 @@ while [[ "${1:0:1}" = "-" ]]; do
 		--custom-drop-link)
 			CUSTOM_TARGET=$2
 			CUSTOM_LINK=$3
-			CUSTOM_CLAUSE="set position of item \"${CUSTOM_LINK}\ to {$4, $5}
+			CUSTOM_CLAUSE="set position of item \"${CUSTOM_LINK}\" to {$4, $5}
 			"
 			shift;shift;shift;shift;shift;;
 		--eula)
