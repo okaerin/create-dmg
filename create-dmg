@@ -66,6 +66,8 @@ Options:
       make a drop link to Applications, at location x,y
   --ql-drop-link <x> <y>
       make a drop link to user QuickLook install dir, at location x,y
+  --custom-drop-link <target_link> <link_name> <x> <y>
+      make a custom link to a custom location dir, at location x,y
   --eula <eula_file>
       attach a license file to the dmg (plain text or RTF)
   --no-internet-enable
