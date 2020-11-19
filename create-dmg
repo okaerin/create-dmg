@@ -145,6 +145,12 @@ while [[ "${1:0:1}" = "-" ]]; do
 			APPLICATION_CLAUSE="set position of item \"Applications\" to {$2, $3}
 			"
 			shift; shift; shift;;
+		--custom-drop-link)
+			CUSTOM_TARGET=$2
+			CUSTOM_LINK=$3
+			CUSTOM_CLAUSE="set position of item \"${CUSTOM_LINK}\ to {$4, $5}
+			"
+			shift;shift;shift;shift;shift;;
 		--eula)
 			EULA_RSRC=$2
 			shift; shift;;
@@ -328,6 +334,11 @@ if [[ -n "$QL_LINK" ]]; then
 	ln -s "/Library/QuickLook" "$MOUNT_DIR/QuickLook"
 fi
 
+if [[ -n "$CUSTOM_TARGET" ]];then
+	echo "Making link  ${CUSTOM_LINK} to custom location..."
+	echo $MOUNT_DIR
+	ln -s "${CUSTOM_TARGET}" "$MOUNT_DIR/$CUSTOM_LINK"
+fi
 if [[ -n "$VOLUME_ICON_FILE" ]]; then
 	echo "Copying volume icon file '$VOLUME_ICON_FILE'..."
 	cp "$VOLUME_ICON_FILE" "$MOUNT_DIR/.VolumeIcon.icns"
@@ -356,6 +367,7 @@ else
 			| perl -pe "s/POSITION_CLAUSE/$POSITION_CLAUSE/g" \
 			| perl -pe "s/QL_CLAUSE/$QL_CLAUSE/g" \
 			| perl -pe "s/APPLICATION_CLAUSE/$APPLICATION_CLAUSE/g" \
+			| perl -pe "s/CUSTOM_CLAUSE/$CUSTOM_CLAUSE/g"
 			| perl -pe "s/HIDING_CLAUSE/$HIDING_CLAUSE/" \
 			> "$APPLESCRIPT_FILE"
 		sleep 2 # pause to workaround occasional "Can’t get disk" (-1728) issues  
